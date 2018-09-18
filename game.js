@@ -33,7 +33,7 @@ function bindEventListeners (dots) {
     // 'contextmenu' is the righ-click mouse event
     dots[i].addEventListener('contextmenu', makeGreen);
     dots[i].addEventListener('click', makeBlue);
-//    dots[i].addEventListener('dblclick', hide);
+    dots[i].addEventListener('dblclick', hide);
   }
 }
 
@@ -57,11 +57,11 @@ function makeBlue (evt) {
 
 // CREATE FUNCTION hide HERE
 
-// function hide (evt) {
-//   evt.target.classList.toggle('invisible');
-//   // trigger count update of invisible counter
-//   updateCounts();
-// }
+function hide (evt) {
+  evt.target.classList.toggle('invisible');
+  // trigger count update of invisible counter
+  updateCounts();
+}
 
 
 
