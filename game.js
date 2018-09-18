@@ -39,11 +39,11 @@ function bindEventListeners (dots) {
 
 function makeGreen (evt) {
   // override / stop the default right-click mouse event behaviours (the context menu)
-  evt.preventDefault()
+  evt.preventDefault();
   evt.target.classList.toggle('green');
   // evt.target.classList.remove('blue');
   // evt.target.classList.remove('hide');
-  updateCounts()
+  updateCounts();
 }
 
 // CREATE FUNCTION makeBlue HERE
@@ -58,6 +58,7 @@ function makeBlue (evt) {
 // CREATE FUNCTION hide HERE
 
 function hide (evt) {
+  evt.preventDefault() // trying to stop the double click from selecting text-space and highlighting it in the browser
   evt.target.classList.toggle('invisible');
   // trigger count update of invisible counter
   updateCounts();
@@ -66,6 +67,9 @@ function hide (evt) {
 
 
 function updateCounts () {
+  
+   
+  // our totals Object, with blue, green and invisible properties
   var totals = {
     blue: 0,
     green: 0,
@@ -73,6 +77,33 @@ function updateCounts () {
   }
   
   // WRITE CODE HERE TO COUNT BLUE, GREEN, AND INVISIBLE DOTS
+
+  // find all the dots.  divs within the div.board
+//  var dots = document.body.classList('board')[0].children;
+var dots = document.getElementsByClassName('board')[0].children;
+for (i = 0; i < dots.length; i++) {
+    var dot = dots[i]; // get the first div element as dot
+    // if it's got the class
+    if (dot.classList.contains("green")) {
+      totals['green']++;
+    }
+    if (dot.classList.contains('blue')) {
+      totals["blue"]++;
+    }
+    if (dot.classList.contains("invisible")) {
+      totals["invisible"]++;
+    }
+
+    //switch () { case a: case b: break; default: break; }
+    // switch (dot.classList) {
+    //   case "green"
+    // }
+  }
+  
+  // loop through each of them to see what classes they have
+  // set the counts appropriately
+
+
 
   // Once you've done the counting, this function will update the display
   displayTotals(totals)
